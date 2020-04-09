@@ -1,8 +1,9 @@
 sudo: required
 services:
   - docker
-after_success:
-  - echo "Build Completed"
+
+before_install:
+  - echo "Installing"
 
 notifications:
   slack:
