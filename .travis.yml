@@ -1,0 +1,11 @@
+before_install:
+  - echo $TRAVIS_COMMIT
+
+notifications:
+  slack:
+    on_success: always
+    rooms:
+      - secure: ioKYEPliwid3uMo1II1q8P1aFXaRSV09j66PT0X+AG2eFuJYoBzdaQBmvfYpSTeDyZeIdL8SCyKebyR5mZYhRez0AqCxN1bJXk4Mr3KLRCFw72jWkzYzkdM6fi7ZhWDlmLjqvke4EzxxBOj6ZOG4i5GDok0xD2a5eMCAUPv2YoN+TXUlevjFSH7peowHB9PQ8HGadPS0TJGlSdnAlsdexrpcL655JxteSWxsiOKaSN1WROT7qexI3mS3JN+LwaSTgQIlIurYFEdlAlWL7cFMtd0taTWbchTwWJ/QMNzEJxYnhpCeQo952f6wpdleNkWAuTbT+N+GQt+L3qCTVYwoYYqtCPE1MeQFMfnQNwtNxNy94RQ+e7dJ/7VjDJ5CPT96Nx8gIrMXIRH6fRiAviFdiTTnjJg0eqwXUKbAO30sldQZVSPxKF5qaijLaSi1OzVa0PLCbGs9ioQTP6yp+j079VgQ7y6uYENkRBXjCFgSF4H3jFP9wTiYsf0Kosez3c2301ixVryLc34AQHrkamvs6TuIgOUBc3srv1vnINDFTCUNSUnNf4aZwrR1BzriQsA5UkKqMHhvqmRi6oVEfRZ8Hti/b4zSRPrcz32NRRm8QnipVtI9OJpBi1JaUKwpQr74CX+/tBKSNgFPlTVrVFXugjuUQ0JCYGMop3g6T5h1H7I=
+
+after_success:
+  - echo $TRAVIS_BRANCH
