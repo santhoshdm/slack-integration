@@ -1,14 +1,9 @@
-sudo: required
-services:
-  - docker
-
-before_install:
-  - echo "Installing"
-
+language: ruby
+rvm:
+- 2.0.0
+- 1.9.3
+- jruby-19mode
+- rbx-2
 notifications:
   slack:
-    template:
-      - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{duration}"
-    on_failure: never
-    rooms:
-      - secure: zQ45AIWoN4e8Y8F1PBStV42hBQu1gAj3WNFa6oUlBRlpIC0Z71bBsr9/p6uLTjtutJAC15GTMygXjuuC5yepz9MFE7yQXyI3JivvOiC9/QDljbv9BBrjx7eJ/gnhEKDFVk4WyR3RJ+hWiNmOszt1hxaCLdR0dAyTkC1rCvRSIn+063Os0MYs8lSocEEhVKdL2tu0nGpkSYkJ3ApN5kRXfT4bjK3Y07EVytV3expKuJ3ejzNqWLfEeVYBKp2xMxYd6hCFasfgMG76GrbvKKxnA9DR21Si/kKNKs5mimG7qn+k1fy/Gabudq/tTRjhajsSC1uOJfivzYMCGV4zZspjCPyLUaLwVCvKbIXE1SXGPWxOSGJYS3Y+9k69UfcDUBAy47l5tGpZgpjOWMKhNTvu+GkUuW595RuUaxcDiesmtwEHxHYELVwyab31BExcmR/XLnZmTAKj0Pmo2KfcVvYoIcAbnr5t2iCGNCCkJIX+/AtB+7P8g3Lyq/EL/L0gB1nz/Z1p+u6FbqHPn9WWivLkmMZcx66BJnoX02IvM6FQDAPRmukRbp/rWa14Dr/GlE//HRMkQr7ACLIz5xhiGj0vV+VJVH7Zi7D/WzlRSGe5K4mqkT4XBN/zAhfvoq84iMrfEEfOkgFTxk5EPu9Uz9Jsg0WWgqo4jdep4Lg4Qmr90C8=
+    secure: fgD62jo/lvjfif5eCgpPUw1ylpektIO7NOmb8E8/ST9VuHdBwtndE2IRCp3+7dq6eBzvWgUXK3UfjUoyPTg5JLzZYyELljm1H6azGAhWWn0jz0NSojloaPq4sb0hbaNk1zXvqUhjLgO6DEg7jRxCNNDKUZIO38nBXDRVioBCdJxjIFVPTZunrAv5BJswXpsWRRMJSv/QX+Otk3r6miFCW90CyRufQNTbGWBmatVKNQ9pUJyjhh6moXAfHc6/xFtF1iJstOY5e33Ef/s48UFcHZonPO4pKYVeDGtX80u1GkOgaakVRcgnDDAvdy1vv/X5HJsy4RrIN6GFwX5+7F6ZisZaiASAWonWfAJ6QrfK7D7ZorjMgt1FBrvOhp5lnhlr2SYXwNPkvbn0dpRlqgAarno/g8U7yow+8RwBZX/CS2A+X7LLMOxLAapVjmh3PCHlQj02+9SwgCSdx1GzLZ38ot8wwhAnR7RuN6fQ0AknO72fH6nZYjjdAIsEJBTSvsxi483+mRYIaTzIIKZ5ZWcjz+I7hw/BFKjj4xTme32jfJKFr5b7EwKCcMKPoRHwoE+dLJpMoBymBc0r8/2KDqWho0F0X1Wwn2Em49D/i0dOi5c0A/iILLGHD+ivDKPhghVmB5poyvX9/yhGaAHfcdUIUqVwJaxg2CElHzoSanLWnt4=
