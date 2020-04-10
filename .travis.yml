@@ -9,6 +9,6 @@ notifications:
   slack:
     template:
       - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{duration}"
-    on_failure: always
+    on_failure: never
     rooms:
       - secure: zQ45AIWoN4e8Y8F1PBStV42hBQu1gAj3WNFa6oUlBRlpIC0Z71bBsr9/p6uLTjtutJAC15GTMygXjuuC5yepz9MFE7yQXyI3JivvOiC9/QDljbv9BBrjx7eJ/gnhEKDFVk4WyR3RJ+hWiNmOszt1hxaCLdR0dAyTkC1rCvRSIn+063Os0MYs8lSocEEhVKdL2tu0nGpkSYkJ3ApN5kRXfT4bjK3Y07EVytV3expKuJ3ejzNqWLfEeVYBKp2xMxYd6hCFasfgMG76GrbvKKxnA9DR21Si/kKNKs5mimG7qn+k1fy/Gabudq/tTRjhajsSC1uOJfivzYMCGV4zZspjCPyLUaLwVCvKbIXE1SXGPWxOSGJYS3Y+9k69UfcDUBAy47l5tGpZgpjOWMKhNTvu+GkUuW595RuUaxcDiesmtwEHxHYELVwyab31BExcmR/XLnZmTAKj0Pmo2KfcVvYoIcAbnr5t2iCGNCCkJIX+/AtB+7P8g3Lyq/EL/L0gB1nz/Z1p+u6FbqHPn9WWivLkmMZcx66BJnoX02IvM6FQDAPRmukRbp/rWa14Dr/GlE//HRMkQr7ACLIz5xhiGj0vV+VJVH7Zi7D/WzlRSGe5K4mqkT4XBN/zAhfvoq84iMrfEEfOkgFTxk5EPu9Uz9Jsg0WWgqo4jdep4Lg4Qmr90C8=
