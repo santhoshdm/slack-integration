@@ -1,0 +1,54 @@
+travis init
+Outdated CLI version, run `gem install travis`.
+Shell completion not installed. Would you like to install it now? |y| n
+Detected repository as santhoshdm/slack-integration, is this correct? |yes| yes
+Main programming language used: |Ruby| Ruby
+.travis.yml file created!
+not logged in, please run travis login --org
+# ls -la
+total 8
+drwxr-xr-x  5 root root  160 Apr 10 08:47 .
+drwxr-xr-x  1 root root 4096 Apr 10 08:45 ..
+drwxr-xr-x 13 root root  416 Apr 10 08:47 .git
+drwxr-xr-x  6 root root  192 Apr 10 08:43 .idea
+-rw-r--r--  1 root root   59 Apr 10 08:47 .travis.yml
+# cat .travis.yml
+language: ruby
+rvm:
+- 2.0.0
+- 1.9.3
+- jruby-19mode
+- rbx-2
+#
+#
+#
+# docker login --com
+sh: 13: docker: not found
+# travis login --com
+Outdated CLI version, run `gem install travis`.
+Shell completion not installed. Would you like to install it now? |y| n
+We need your GitHub login to identify you.
+This information will not be sent to Travis CI, only to api.github.com.
+The password will not be displayed.
+
+Try running with --github-token or --auto if you don't want to enter your password anyway.
+
+Username: santhoshdm
+Password for santhoshdm: **************
+Successfully logged in as santhoshdm!
+# travis init
+Outdated CLI version, run `gem install travis`.
+.travis.yml already exists, use --force to override
+travis encrypt "multi-k8s:ScpOqN0QVbt8fQg5V418zqvU" --add notifications.slack.rooms -r santhoshdm/multi-k8s
+# travis encrypt "multi-k8s:JvARGxATLg61mcdv8yeWgXb0" --add notifications.slack -r santhoshdm/slack-integration
+Outdated CLI version, run `gem install travis`.
+# cat .travis.yml
+language: ruby
+rvm:
+- 2.0.0
+- 1.9.3
+- jruby-19mode
+- rbx-2
+notifications:
+  slack:
+    secure: fgD62jo/lvjfif5eCgpPUw1ylpektIO7NOmb8E8/ST9VuHdBwtndE2IRCp3+7dq6eBzvWgUXK3UfjUoyPTg5JLzZYyELljm1H6azGAhWWn0jz0NSojloaPq4sb0hbaNk1zXvqUhjLgO6DEg7jRxCNNDKUZIO38nBXDRVioBCdJxjIFVPTZunrAv5BJswXpsWRRMJSv/QX+Otk3r6miFCW90CyRufQNTbGWBmatVKNQ9pUJyjhh6moXAfHc6/xFtF1iJstOY5e33Ef/s48UFcHZonPO4pKYVeDGtX80u1GkOgaakVRcgnDDAvdy1vv/X5HJsy4RrIN6GFwX5+7F6ZisZaiASAWonWfAJ6QrfK7D7ZorjMgt1FBrvOhp5lnhlr2SYXwNPkvbn0dpRlqgAarno/g8U7yow+8RwBZX/CS2A+X7LLMOxLAapVjmh3PCHlQj02+9SwgCSdx1GzLZ38ot8wwhAnR7RuN6fQ0AknO72fH6nZYjjdAIsEJBTSvsxi483+mRYIaTzIIKZ5ZWcjz+I7hw/BFKjj4xTme32jfJKFr5b7EwKCcMKPoRHwoE+dLJpMoBymBc0r8/2KDqWho0F0X1Wwn2Em49D/i0dOi5c0A/iILLGHD+ivDKPhghVmB5poyvX9/yhGaAHfcdUIUqVwJaxg2CElHzoSanLWnt4=

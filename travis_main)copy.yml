@@ -1,0 +1,50 @@
+sudo: required
+services:
+  - docker
+env:
+  global:
+    - SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+before_install:
+  #- openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in service-account.json.enc -out service-account.json -d
+  #- curl https://sdk.cloud.google.com | bash > /dev/null;
+  #- source $HOME/google-cloud-sdk/path.bash.inc
+  #- gcloud components update kubectl
+  #- gcloud auth activate-service-account --key-file service-account.json
+  #- gcloud config set project multi-k8s-273412
+  #- gcloud config set compute/zone us-central1-c
+  #- gcloud container clusters get-credentials multi-cluster
+  #- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - npm install -g snyk
+  - snyk auth "$SYNK_TOKEN"
+  - docker build -t dmsanthosh/react-test -f ./client/Dockerfile.test ./client
+  - docker build -t dmsanthosh/multi-server -f ./server/Dockerfile ./server
+  - snyk monitor --docker dmsanthosh/react-test --file=./client/Dockerfile.test
+  - snyk monitor --docker dmsanthosh/multi-server --file=./server/Dockerfile
+
+script:
+  - docker run -e CI=true dmsanthosh/react-test npm test -- --coverage
+#deploy:
+#  provider: script
+#  script: bash ./deploy.sh
+#  on:
+#    branch: master
+
+notifications:
+  slack:
+    template:
+      - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{duration}"
+    on_success: always
+    on_failure: always
+    rooms:
+      - secure: zQ45AIWoN4e8Y8F1PBStV42hBQu1gAj3WNFa6oUlBRlpIC0Z71bBsr9/p6uLTjtutJAC15GTMygXjuuC5yepz9MFE7yQXyI3JivvOiC9/QDljbv9BBrjx7eJ/gnhEKDFVk4WyR3RJ+hWiNmOszt1hxaCLdR0dAyTkC1rCvRSIn+063Os0MYs8lSocEEhVKdL2tu0nGpkSYkJ3ApN5kRXfT4bjK3Y07EVytV3expKuJ3ejzNqWLfEeVYBKp2xMxYd6hCFasfgMG76GrbvKKxnA9DR21Si/kKNKs5mimG7qn+k1fy/Gabudq/tTRjhajsSC1uOJfivzYMCGV4zZspjCPyLUaLwVCvKbIXE1SXGPWxOSGJYS3Y+9k69UfcDUBAy47l5tGpZgpjOWMKhNTvu+GkUuW595RuUaxcDiesmtwEHxHYELVwyab31BExcmR/XLnZmTAKj0Pmo2KfcVvYoIcAbnr5t2iCGNCCkJIX+/AtB+7P8g3Lyq/EL/L0gB1nz/Z1p+u6FbqHPn9WWivLkmMZcx66BJnoX02IvM6FQDAPRmukRbp/rWa14Dr/GlE//HRMkQr7ACLIz5xhiGj0vV+VJVH7Zi7D/WzlRSGe5K4mqkT4XBN/zAhfvoq84iMrfEEfOkgFTxk5EPu9Uz9Jsg0WWgqo4jdep4Lg4Qmr90C8=
+
+
+#notifications:
+#  slack:
+#    template:
+#      - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{duration}"
+#    on_success: always
+#    on_failure: always
+#    rooms:
+#      - secure: N1oSQnKRthqNLgezZbNNXnics/CC+Z8jrp3Kf5oNttVwKs2V7/bqWN4BhWtM9xy+VHEKoS6Ua8Ue9YJ3MeDPhPdDOilZYLrAAUpD+fBC2Swq5fFEcOcvfHfg9t4WntL4SAdMOVTH3mn0pqi7fv5dHaZnYKxE0UTVoW+5jZXC8eETvcG0xHLmwu4D1lsDAq1YAi3PUBQDyVHKQ3TfVgiRBxI+XYnf00VUCIR4aaV+kdCrbo+FBtG7upxgPV+PBRrrebloULsveoEYqr6dHDq56lx6pUm/vjzzBfXn2iCdIfX3gDRaa0xQK4Pv3qfzM3eUhijA0enrxaftxUb4FUT0LAYzpWOuU634PUXGkFfpgaTRl4Z7yO5IBJvrkKG59Dn2fWq2th1pfTuzwlH+Dkgc8mMrwylyaqJ4cENqu9qaYP8mhoLP1RbOTiBYC1uoOqubgi0733z9uJLeLcTXQLUB2xE0UI6h9vIy23fvC4f9yxPcUczLZdDQmNyAwq/cTD8lFpSpbwNKXqPUZKnp7X5JUApSd+5JgdByQoRwu/SSi337cJb2A453gIepoPs+uw+U1OVtUnEwNpG5xmtW1QcwQfT9kJPkB4UpC8e4Wxyx2qCxf2hcV0gXO+gQ8iphsTkVlM164qIlFNm6ZUcPRMzA9fXWG2m0WHPrXpIv2uOIEtk=
