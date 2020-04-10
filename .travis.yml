@@ -15,7 +15,9 @@ before_install:
   #- gcloud config set compute/zone us-central1-c
   #- gcloud container clusters get-credentials multi-cluster
   #- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - npm install -g snyk
+  #- npm install -g snyk
+  - npm i snyk
+  - npm start
   - snyk auth "$SNYK_TOKEN"
   - docker build -t dmsanthosh/react-test -f ./client/Dockerfile.test ./client
   #- docker build -t dmsanthosh/multi-server -f ./server/Dockerfile ./server
