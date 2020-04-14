@@ -29,9 +29,10 @@ deploy:
   on:
     branch: master
 
-after_install:
+after_deploy:
+  - travis wait 30
   provider: script
-  script: travis_wait 30 bash ./post_deploy.sh
+  script: bash ./post_deploy.sh
   on:
     branch: master
 
