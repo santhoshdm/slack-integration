@@ -29,6 +29,12 @@ deploy:
   on:
     branch: master
 
+after_install:
+  provider: script
+  script: travis_wait 30 bash ./post_deploy.sh
+  on:
+    branch: master
+
 #notifications:
 #  slack:
 #    on_success: always
