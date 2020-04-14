@@ -25,7 +25,7 @@ script:
   - docker run -e CI=true dmsanthosh/react-test npm test -- --coverage
 deploy:
   provider: script
-  script: bash ./post_deploy.sh
+  script: bash ./deploy.sh
   on:
     branch: master
 
