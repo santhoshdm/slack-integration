@@ -3,7 +3,7 @@ kubectl describe service my-nginx-nginx-ingress-controller | grep "LoadBalancer 
 new_var=$(cat ./eip.txt)
 cat "$new_var"
 curl http://"$new_var":80
-#touch ./op.txt
+##touch ./op.txt
 ##wget http://"$EIP":80 -o ./op.txt && cat ./op.txt
 #curl -o page.html http://"$EIP":80
 rm -rf ./eip.txt
