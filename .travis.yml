@@ -15,12 +15,10 @@ before_install:
   - gcloud config set compute/zone us-central1-c
   - gcloud container clusters get-credentials multi-cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-#Installing snyk for image scanning
   - npm install -g snyk
   - snyk auth "$SNYK_TOKEN"
   - docker build -t dmsanthosh/react-test -f ./client/Dockerfile.test ./client
   - snyk monitor --docker dmsanthosh/react-test --file=./client/Dockerfile.test
-
 script:
   - docker run -e CI=true dmsanthosh/react-test npm test -- --coverage
 deploy:
@@ -28,11 +26,9 @@ deploy:
   script: bash ./deploy.sh
   on:
     branch: master
-
 notifications:
   slack:
     on_success: always
     on_failure: always
     rooms:
-      #- secure: Jj9GtVjXnRu5XhPI4sUzkKaWaGW7UeDskYIr46wsvSA4GDw/1OP9jRp370sTFlR2l9FjyrQAAFNdiKK/cbtZ1B71qrXUXd9wq4aFU/eb5LpZd7go7gbKcu49docGoRJntoJ2GnsimJ04QkECKlsU4joDk+VMcDj1v4J5VtrI2BUfI/QSjS8nQzrk4irk9wKzczCOJS7uywZVSGfaQLFOhU/0F+L9qm/TiUqViFRBjig97vKzyBEeg0G5PXGbsqjI00NsIAfwYnujL9JbYGhSAAAkcYdF/vEyVOLpDe8u3VVF52XaAhHizTGCz35bFnzC8npBZrDK9LvuKKSF0WCH54m7IpFV+AsCUrF6JRCv1M/o39bEAgjc+pxKs0gjZM3e05cE/aoF7KBEeUbWIbsl0tDwfhUHtSQy5jwHAqsIOqjIXiXHcAoRB/DYPZgX4A/G4cC94V6xKY8VKAQP06fClENJ0JfPX5ngRXJ2uWa7oLhAxWtU/L7LVhePiu4RseRATLMIM9P2HBCgd5nqfb3va+o7tcR+zWytQPp6Lkbn5ZQ1wQ4rXZ8KvBoYo5wAMjKCkY2Romiq+d+ZEO82w7ezKgN3d5zDTzWjmh/oc/vU7HdSFS4mT9/qJJ/8jIROyQsvVmGqf3TN4iXBLam7DIw3ziYykdtb8vVuZletQgqwFvQ=
-      - secure: oSltnvmmfFozijdUKvR8BblKpOq6+z9j4xYV2z2rYPjIVgcr9dhudGPLTakgsI0oc/hTjG41oQ4wMN7t5leAKHP2lxEoi4mtKHn/H7y0BSlOZBbDn9ZBRW0V54UWGilGe5QXStAOiBh2qIWaEMpQx7qBDiqbwUpotKcwhZdnvlNCZnIeRjfTs9HKD6gqreApk2lQDchkxw/RuJ5Fd7Bncf/yEphRfoiMFRQZQuybylafFY3PUKGLSH6M90uGlTMoZlj8qxD2yL2wt0OdWT13HPOJggcVgPoSK2wmk8e2uUXTwhg3YWRl+gATE4yZp/OkGkGKQV2lqepjFPqZfN6gkf+pk5bx4GAWYhUK0r4si2WNAO3H0EgFYbDRrNKYt+TGU5NPEmiV9Isvm2la798gthHxuE3/DxyX38+pHQxFQ4CsPgUllR+R9zSFFs0HrFsvFkYTIPBFKxiigjVeB2BEkI79LJj5U6h/e7hCWN2iDq2Rjw+9YDGTLTsE3WRsWsBTX8xdVf9HnXg8S+LqQwqrdnbyu8wSOYVteoz6aUU6sISHbBdvLig0wk1IPgxzsQZsEEaeZs4B4VXjiLCyCo1ajI2gd6t4pZc4AUd0nC1kp7NwTvEhhrDEDOvaokyAsy0ymkyDCTVXZTDxJ8Sl3QZ+vwrYs2WL/srk2LVaZUsyQhI=
+      - secure: cu+7IgGgX98LRJYjdMq3WdWzo2iwZcGEv2jrlxBbaH58FOpSHEl4yRLT+hj5TDwRd1gTGmPPah5G48osp1TfTtjfzVx79GpueDKpoYPp3aYIDBLNGLszFKvNUqmCl2eVNe7xLhp5O5m9UKqPk34Z6Q2TaPXK7DtOHOvHJVZrS/NXw6nbG7TSILmkcUT6EvypoP27vTBoSo2WZDcHlVGRGBG7+XhogvjjUJ9AeJujeY7D2vcKhFoNaWcDfIKLKaa2lK/rTix1c2LORPag7FMZlnDqGEG20B7cGbuMu3Av2nDhsCOwC0Kt0FEY7sOF/ZU6Ai1BGUNdTPPRfHtO6SYe5UVXh6eaPrepoXN0Was4CIqhulCkaELBJq4zCowrZeys5njBE0vJ1kvokT4SMlvYeQ/rPgGtHoJjX+MnuAwvKRERVPzb4pMhTO/cb0Q3msa74DR8H0qmcnwOcw6e5w3Jlyd8OvR7jAvxg5+szJarP+JbIV7a+67FdUdeW2PPFPenIzW/wvTPRTVWoOqHNbBAhfd8vC5inzyv+ppM6lMy07EQ8mx/7SklnoW2/aDfuHS/uRjqETJEdYoyfP701PehMrfgNlEvcNV/p/O1iEJIbL6qIqiN7Hzkdy8RHjh5zzXc5+qgFSaiJRqLrar7B07YC67wYHxMDdpB/z3euq5zAG8=
